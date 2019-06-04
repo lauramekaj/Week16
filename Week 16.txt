@@ -1,0 +1,735 @@
+﻿
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd if=/dev/zero
+^C646896+0 records in
+646895+0 records out
+331210240 bytes (331 MB, 316 MiB) copied, 13,6578 s, 24,3 MB/s
+
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd if=/dev/zero of=file.txt count=1024 bs=1024
+1024+0 records in
+1024+0 records out
+1048576 bytes (1,0 MB, 1,0 MiB) copied, 0,0092266 s, 114 MB/s
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls -l
+total 1100
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 15:19 Desktop
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 25 23:47 Documents
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai 17 14:53 Downloads
+-rw-r--r-- 1 lauramekaj lauramekaj    8980 apr 24 02:47 examples.desktop
+-rw-r--r-- 1 lauramekaj lauramekaj 1048576 mai 21 11:08 file.txt
+-rw-r--r-- 1 lauramekaj lauramekaj      93 mai  7 12:03 index.html
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 27 00:13 Junk
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Music
+-rw-r--r-- 1 lauramekaj lauramekaj      11 mai  8 01:08 octave-workspace
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 13:58 Pictures
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Public
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai  7 12:38 snap
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Templates
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:43 test
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:44 test1
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 21:18 T.Software
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Videos
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 13:11 week14
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd if=/dev/zero of=file.txt bc=1 bs=1024
+dd: unrecognized operand ‘bc=1’
+Try 'dd --help' for more information.
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd --help
+Usage: dd [OPERAND]...
+  or:  dd OPTION
+Copy a file, converting and formatting according to the operands.
+
+  bs=BYTES        read and write up to BYTES bytes at a time (default: 512);
+                  overrides ibs and obs
+  cbs=BYTES       convert BYTES bytes at a time
+  conv=CONVS      convert the file as per the comma separated symbol list
+  count=N         copy only N input blocks
+  ibs=BYTES       read up to BYTES bytes at a time (default: 512)
+  if=FILE         read from FILE instead of stdin
+  iflag=FLAGS     read as per the comma separated symbol list
+  obs=BYTES       write BYTES bytes at a time (default: 512)
+  of=FILE         write to FILE instead of stdout
+  oflag=FLAGS     write as per the comma separated symbol list
+  seek=N          skip N obs-sized blocks at start of output
+  skip=N          skip N ibs-sized blocks at start of input
+  status=LEVEL    The LEVEL of information to print to stderr;
+                  'none' suppresses everything but error messages,
+                  'noxfer' suppresses the final transfer statistics,
+                  'progress' shows periodic transfer statistics
+
+N and BYTES may be followed by the following multiplicative suffixes:
+c =1, w =2, b =512, kB =1000, K =1024, MB =1000*1000, M =1024*1024, xM =M,
+GB =1000*1000*1000, G =1024*1024*1024, and so on for T, P, E, Z, Y.
+
+Each CONV symbol may be:
+
+  ascii     from EBCDIC to ASCII
+  ebcdic    from ASCII to EBCDIC
+  ibm       from ASCII to alternate EBCDIC
+  block     pad newline-terminated records with spaces to cbs-size
+  unblock   replace trailing spaces in cbs-size records with newline
+  lcase     change upper case to lower case
+  ucase     change lower case to upper case
+  sparse    try to seek rather than write the output for NUL input blocks
+  swab      swap every pair of input bytes
+  sync      pad every input block with NULs to ibs-size; when used
+            with block or unblock, pad with spaces rather than NULs
+  excl      fail if the output file already exists
+  nocreat   do not create the output file
+  notrunc   do not truncate the output file
+  noerror   continue after read errors
+  fdatasync  physically write output file data before finishing
+  fsync     likewise, but also write metadata
+
+Each FLAG symbol may be:
+
+  append    append mode (makes sense only for output; conv=notrunc suggested)
+  direct    use direct I/O for data
+  directory  fail unless a directory
+  dsync     use synchronized I/O for data
+  sync      likewise, but also for metadata
+  fullblock  accumulate full blocks of input (iflag only)
+  nonblock  use non-blocking I/O
+  noatime   do not update access time
+  nocache   Request to drop cache.  See also oflag=sync
+  noctty    do not assign controlling terminal from file
+  nofollow  do not follow symlinks
+  count_bytes  treat 'count=N' as a byte count (iflag only)
+  skip_bytes  treat 'skip=N' as a byte count (iflag only)
+  seek_bytes  treat 'seek=N' as a byte count (oflag only)
+
+Sending a USR1 signal to a running 'dd' process makes it
+print I/O statistics to standard error and then resume copying.
+
+Options are:
+
+      --help     display this help and exit
+      --version  output version information and exit
+
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+Full documentation at: <https://www.gnu.org/software/coreutils/dd>
+or available locally via: info '(coreutils) dd invocation'
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd if=/dev/zero of=file.txt count=1 bs=1024
+1+0 records in
+1+0 records out
+1024 bytes (1,0 kB, 1,0 KiB) copied, 0,000589895 s, 1,7 MB/s
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd if=/dev/zero of=file.txt count=1024 bs=1024
+1024+0 records in
+1024+0 records out
+1048576 bytes (1,0 MB, 1,0 MiB) copied, 0,00704728 s, 149 MB/s
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd if=/dev/zero of=file.txt count=1024 bs=1024
+1024+0 records in
+1024+0 records out
+1048576 bytes (1,0 MB, 1,0 MiB) copied, 0,00591457 s, 177 MB/s
+
+lauramekaj@lauramekaj-ThinkPad-T440:~$ dd if=/dev/zero of=1K.dat count=1 bs=1024
+1+0 records in
+1+0 records out
+1024 bytes (1,0 kB, 1,0 KiB) copied, 0,000675272 s, 1,5 MB/s
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls -l
+total 1104
+-rw-r--r-- 1 lauramekaj lauramekaj    1024 mai 21 11:21 1K.dat
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 15:19 Desktop
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 25 23:47 Documents
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai 17 14:53 Downloads
+-rw-r--r-- 1 lauramekaj lauramekaj    8980 apr 24 02:47 examples.desktop
+-rw-r--r-- 1 lauramekaj lauramekaj 1048576 mai 21 11:20 file.txt
+-rw-r--r-- 1 lauramekaj lauramekaj      93 mai  7 12:03 index.html
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 27 00:13 Junk
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Music
+-rw-r--r-- 1 lauramekaj lauramekaj      11 mai  8 01:08 octave-workspace
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 13:58 Pictures
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Public
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai  7 12:38 snap
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Templates
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:43 test
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:44 test1
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 21:18 T.Software
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Videos
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 13:11 week14
+lauramekaj@lauramekaj-ThinkPad-T440:~$ mkdir Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls -l
+total 1108
+-rw-r--r-- 1 lauramekaj lauramekaj    1024 mai 21 11:21 1K.dat
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 15:19 Desktop
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 25 23:47 Documents
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai 17 14:53 Downloads
+-rw-r--r-- 1 lauramekaj lauramekaj    8980 apr 24 02:47 examples.desktop
+-rw-r--r-- 1 lauramekaj lauramekaj 1048576 mai 21 11:20 file.txt
+-rw-r--r-- 1 lauramekaj lauramekaj      93 mai  7 12:03 index.html
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 27 00:13 Junk
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Music
+-rw-r--r-- 1 lauramekaj lauramekaj      11 mai  8 01:08 octave-workspace
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 13:58 Pictures
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Public
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai  7 12:38 snap
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Templates
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:43 test
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:44 test1
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 21:18 T.Software
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Videos
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 13:11 week14
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai 21 11:22 Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~$ cd 1K.dat Week16
+bash: cd: too many arguments
+lauramekaj@lauramekaj-ThinkPad-T440:~$ mv 1K.dat Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls -l
+total 1104
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 15:19 Desktop
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 25 23:47 Documents
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai 17 14:53 Downloads
+-rw-r--r-- 1 lauramekaj lauramekaj    8980 apr 24 02:47 examples.desktop
+-rw-r--r-- 1 lauramekaj lauramekaj 1048576 mai 21 11:20 file.txt
+-rw-r--r-- 1 lauramekaj lauramekaj      93 mai  7 12:03 index.html
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 27 00:13 Junk
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Music
+-rw-r--r-- 1 lauramekaj lauramekaj      11 mai  8 01:08 octave-workspace
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 13:58 Pictures
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Public
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai  7 12:38 snap
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Templates
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:43 test
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:44 test1
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 21:18 T.Software
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Videos
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 13:11 week14
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai 21 11:24 Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~$ cd Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ dd if=/dev/zero of=file.txt count=1024 bs=1024
+1024+0 records in
+1024+0 records out
+1048576 bytes (1,0 MB, 1,0 MiB) copied, 0,00707164 s, 148 MB/s
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ dd if=/dev/zero of=1M.dat count=1024 bs=1024
+1024+0 records in
+1024+0 records out
+1048576 bytes (1,0 MB, 1,0 MiB) copied, 0,00815659 s, 129 MB/s
+
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls
+1K.dat  1M.dat  file.txt
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ rm file.txt
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls
+1K.dat  1M.dat
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ dd if=/dev/zero of=10M.dat count=1 bs=10MB
+1+0 records in
+1+0 records out
+10000000 bytes (10 MB, 9,5 MiB) copied, 0,0158416 s, 631 MB/s
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ dd if=/dev/zero of=1B.dat count=1 bs=1B
+dd: invalid number: ‘1B’
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ dd if=/dev/zero of=10M.dat count=1 bs=100MB
+1+0 records in
+1+0 records out
+100000000 bytes (100 MB, 95 MiB) copied, 0,791189 s, 126 MB/s
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls 
+10M.dat  1K.dat  1M.dat
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ dd if=/dev/zero of=10M.dat count=1 bs=10MB
+1+0 records in
+1+0 records out
+10000000 bytes (10 MB, 9,5 MiB) copied, 0,0284881 s, 351 MB/s
+
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+	  [-m minttl] [-O length] [-P proxy_username] [-p source_port]
+	  [-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+	  [-X proxy_protocol] [-x proxy_address[:port]] 	  [destination] [port]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc -l 1234
+GET / HTTP/1.1
+Host: 127.0.0.1:1234
+User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:66.0) Gecko/20100101 Firefox/66.0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: en-US,en;q=0.5
+Accept-Encoding: gzip, deflate
+Connection: keep-alive
+Upgrade-Insecure-Requests: 1
+
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 127.0.0.1 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc -l 1234
+
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~$ rm -f /tmp/f; mkfifo /tmp/f
+lauramekaj@lauramekaj-ThinkPad-T440:~$ cat /tmp/f | /bin/sh -i 2>&l | nc -l 127.0.0.1 1234 > /tmp/f
+bash: l: ambiguous redirect
+^C      
+lauramekaj@lauramekaj-ThinkPad-T440:~$ cat /tmp/f | /bin/sh -i 2>&1 | nc -l 127.0.0.1 1234 > /tmp/f
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls
+Desktop           file.txt    octave-workspace  Templates   Videos
+Documents         index.html  Pictures          test        week14
+Downloads         Junk        Public            test1       Week16
+examples.desktop  Music       snap              T.Software
+lauramekaj@lauramekaj-ThinkPad-T440:~$ cd Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ cat 1
+cat: 1: No such file or directory
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls
+10M.dat  1K.dat  1M.dat
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ cat 1K.dat | nc -l 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ cat 1K.dat | nc -l 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc -l 1234 <1K.dat
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ cat 1K.dat | nc -l 1234
+
+hello
+
+hello
+
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ 
+
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ cat 1K.dat | nc -l 1234
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ cat 1K.dat | nc -l 1234
+hi
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc -l 1234 > filename.out
+
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc -l 1234 > 1K.out
+^[[A^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc -l 1234 > 1K.out
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc -l 1234 < 1K.out
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc -l 1234 < 1K.dat
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ 
+
+
+
+
+
+
+
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ssh 
+usage: ssh [-46AaCfGgKkMNnqsTtVvXxYy] [-B bind_interface]
+           [-b bind_address] [-c cipher_spec] [-D [bind_address:]port]
+           [-E log_file] [-e escape_char] [-F configfile] [-I pkcs11]
+           [-i identity_file] [-J [user@]host[:port]] [-L address]
+           [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port]
+           [-Q query_option] [-R address] [-S ctl_path] [-W host:port]
+           [-w local_tun[:remote_tun]] destination [command]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ssh user@192.168.88.36
+The authenticity of host '192.168.88.36 (192.168.88.36)' can't be established.
+ECDSA key fingerprint is SHA256:eCYSS+S8RaYqO7QkW/fS1cm4vttThd8LmdsshuODxF4.
+Are you sure you want to continue connecting (yes/no)? y
+Please type 'yes' or 'no': yes
+Warning: Permanently added '192.168.88.36' (ECDSA) to the list of known hosts.
+user@192.168.88.36's password: 
+Linux a12-203 4.9.0-8-amd64 #1 SMP Debian 4.9.110-3+deb9u6 (2018-10-08) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue Jan 29 06:25:32 2019
+user@a12-203:~$ ifconfig
+enp0s25: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.88.36  netmask 255.255.255.0  broadcast 192.168.88.255
+        inet6 fe80::219:99ff:fe5f:82b3  prefixlen 64  scopeid 0x20<link>
+        ether 00:19:99:5f:82:b3  txqueuelen 1000  (Ethernet)
+        RX packets 1804  bytes 516433 (504.3 KiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 946  bytes 84069 (82.0 KiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 23  memory 0xfc400000-fc420000  
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1  (Local Loopback)
+        RX packets 2  bytes 100 (100.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 2  bytes 100 (100.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+
+user@a12-203:~$ ls
+123            Downloads  RAE473_FALL 2018  bin          miniconda3    test1
+181AEM048.csv  Gowtham    Templates         data.txt     mynuddin      tmp
+181AEM079.txt  Music      Videos            develop      new.txt       weka.log
+1k.dat         Pictures   Week16            example.csv  report
+411            Public     a.txt             file.txt     tcp
+Documents      R          average1.tx       lalo         tcpserver.py
+user@a12-203:~$ mkdir week-16
+user@a12-203:~$ ls
+123            Downloads  RAE473_FALL 2018  bin          miniconda3    test1
+181AEM048.csv  Gowtham    Templates         data.txt     mynuddin      tmp
+181AEM079.txt  Music      Videos            develop      new.txt       week-16
+1k.dat         Pictures   Week16            example.csv  report        weka.log
+411            Public     a.txt             file.txt     tcp
+Documents      R          average1.tx       lalo         tcpserver.py
+user@a12-203:~$ cd week-16
+user@a12-203:~/week-16$ dd if=/dev/zero of=10M.dat count=1 bs=10MB 
+1+0 records in
+1+0 records out
+10000000 bytes (10 MB, 9.5 MiB) copied, 0.0217983 s, 459 MB/s
+user@a12-203:~/week-16$ cat 10M.dat | nc -l 1234
+^C
+
+user@a12-203:~/week-16$ nc -l 1234 <10M.dat
+^C
+user@a12-203:~/week-16$ nc -l 1234 < 10M.dat
+^[[A^C
+user@a12-203:~/week-16$ nc -l 1234 < 10M.dat
+^C
+user@a12-203:~/week-16$ nc -l 1234 < 10M.dat
+^C
+user@a12-203:~/week-16$ ssh -X user@192.168.88.38 
+The authenticity of host '192.168.88.38 (192.168.88.38)' can't be established.
+RSA key fingerprint is SHA256:mzJt6Ny1C4Jjfh4m/LNJAvbt7rpvU45OmjpC9z7EMws.
+Are you sure you want to continue connecting (yes/no)? yes 
+Warning: Permanently added '192.168.88.38' (RSA) to the list of known hosts.
+user@192.168.88.38's password: 
+Welcome to Ubuntu 12.04.4 LTS (GNU/Linux 3.2.0-48-generic i686)
+
+ * Documentation:  https://help.ubuntu.com/
+
+New release '14.04.1 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Last login: Thu May 16 13:10:05 2019 from 192.168.88.39
+user@TI-308:~$ ls -l
+total 2124
+drwxrwxr-x  2 user user    4096 Nov  6  2017 171AEM050
+drwxrwxr-x  3 user user    4096 Feb  5 13:37 ABC
+drwxrwxr-x  2 user user    4096 Feb  5 13:12 CBC
+drwxr-xr-x  8 user user    4096 Feb 12 13:04 Desktop
+drwxr-xr-x  2 user user    4096 Dec 20 13:52 Documents
+drwxr-xr-x  5 user user    4096 Apr 11 09:54 Downloads
+drwxr-xr-x  2 user user    4096 Sep 19  2017 Music
+drwxr-xr-x  2 user user    4096 Sep 19  2017 Pictures
+drwxr-xr-x  2 user user    4096 Sep 19  2017 Public
+drwxrwxr-x  3 user user    4096 Nov 21 13:38 RAE473_FALL 2018
+drwxr-xr-x  2 user user    4096 Sep 19  2017 Templates
+drwxrwxr-x  2 user user    4096 Oct  3  2017 Test1_171AEM050
+drwxr-xr-x  2 user user    4096 Sep 19  2017 Videos
+-rw-rw-r--  1 user user       6 Sep 20  2017 a.txt
+-rw-rw-r--  1 user user     279 Apr 29 12:09 data1.txt
+drwxrwxr-x 13 user user    4096 Apr  2 16:40 miniconda3
+-rw-rw-r--  1 user user 5242880 Oct 10  2017 myfile.dat
+-rw-rw-r--  1 user user     922 Apr 29 12:02 namefile.txt
+-rw-rw-r--  1 user user     242 Oct 23  2017 octave-core
+-rw-rw-r--  1 user user 2082203 May  8 12:21 socket
+drwxrwxr-x  2 user user    4096 Sep 19  2017 viesis
+drwxrwxr-x  2 user user    4096 May 21 13:56 w18
+drwxr-xr-x  3 user user    4096 Dec 19  2016 weka-3-8-1
+drwxrwxr-x  7 user user    4096 Nov 13  2017 wekafiles
+user@TI-308:~$ cd w18
+user@TI-308:~/w18$ ls
+a.dat
+user@TI-308:~/w18$ nc -l 1234 > a.dat
+^[[A^C
+user@TI-308:~/w18$ nc -l 1234 < a.dat
+^C
+user@TI-308:~/w18$ ls -l
+total 0
+-rw-rw-r-- 1 user user 0 May 21 13:59 a.dat
+user@TI-308:~/w18$ nc -l 1234 < a.dat
+user@TI-308:~/w18$ nc
+This is nc from the netcat-openbsd package. An alternative nc is available
+in the netcat-traditional package.
+usage: nc [-46DdhklnrStUuvzC] [-i interval] [-P proxy_username] [-p source_port]
+	  [-s source_ip_address] [-T ToS] [-w timeout] [-X proxy_protocol]
+	  [-x proxy_address[:port]] [hostname] [port[s]]
+user@TI-308:~/w18$ nc -v
+This is nc from the netcat-openbsd package. An alternative nc is available
+in the netcat-traditional package.
+usage: nc [-46DdhklnrStUuvzC] [-i interval] [-P proxy_username] [-p source_port]
+	  [-s source_ip_address] [-T ToS] [-w timeout] [-X proxy_protocol]
+	  [-x proxy_address[:port]] [hostname] [port[s]]
+user@TI-308:~/w18$ nc -h
+OpenBSD netcat (Debian patchlevel 1.89-4ubuntu1)
+This is nc from the netcat-openbsd package. An alternative nc is available
+in the netcat-traditional package.
+usage: nc [-46DdhklnrStUuvzC] [-i interval] [-P proxy_username] [-p source_port]
+	  [-s source_ip_address] [-T ToS] [-w timeout] [-X proxy_protocol]
+	  [-x proxy_address[:port]] [hostname] [port[s]]
+	Command Summary:
+		-4		Use IPv4
+		-6		Use IPv6
+		-D		Enable the debug socket option
+		-d		Detach from stdin
+		-h		This help text
+		-i secs		Delay interval for lines sent, ports scanned
+		-k		Keep inbound sockets open for multiple connects
+		-l		Listen mode, for inbound connects
+		-n		Suppress name/port resolutions
+		-P proxyuser	Username for proxy authentication
+		-p port		Specify local port for remote connects
+		-q secs		quit after EOF on stdin and delay of secs
+		-r		Randomize remote ports
+ 		-S		Enable the TCP MD5 signature option
+		-s addr		Local source address
+		-T ToS		Set IP Type of Service
+		-C		Send CRLF as line-ending
+		-t		Answer TELNET negotiation
+		-U		Use UNIX domain socket
+		-u		UDP mode
+		-Z		DCCP mode
+		-v		Verbose
+		-w secs		Timeout for connects and final net reads
+		-X proto	Proxy protocol: "4", "5" (SOCKS) or "connect"
+		-x addr[:port]	Specify proxy address and port
+		-z		Zero-I/O mode [used for scanning]
+	Port numbers can be individual or ranges: lo-hi [inclusive]
+user@TI-308:~/w18$ nc -l 1234 < a.dat
+user@TI-308:~/w18$ nc -l 1234 < a.dat
+user@TI-308:~/w18$ nc -l 1234 < a.dat
+user@TI-308:~/w18$ Connection to 192.168.88.36 closed by remote host.
+Connection to 192.168.88.36 closed.
+lauramekaj@lauramekaj-ThinkPad-T440:~$ 
+
+
+
+
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 127.0.0.1 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ rm -f /tmp/f
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 127.0.0.1 1234 > 1Kout.dat 
+^C
+
+lauramekaj@lauramekaj-ThinkPad-T440:~$ cd Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 > 1Kout.dat 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls
+10M.dat  1K.dat  1Kout.dat  1M.dat
+
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 > 1Kout.dat 
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 > 1Kout.dat 
+
+hello
+^C      
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc host.google.com 1234
+nc: getaddrinfo for host "host.google.com" port 1234: Name or service not known
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc google.com 1234
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc google.com 1234
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 > 1Kout.dat 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 > 1Kout.dat 
+hi
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ rm -f/tmp/f
+rm: invalid option -- '/'
+Try 'rm --help' for more information.
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ rm -f /tmp/f
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 <filename.in
+bash: filename.in: No such file or directory
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 <1K.in
+bash: 1K.in: No such file or directory
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 <1K.in
+bash: 1K.in: No such file or directory
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 > 1Kout.dat 
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls
+10M.dat  1K.dat  1K.out  1Kout.dat  1M.dat  filename.out
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls -l
+total 10796
+-rw-r--r-- 1 lauramekaj lauramekaj 10000000 mai 21 11:49 10M.dat
+-rw-r--r-- 1 lauramekaj lauramekaj     1024 mai 21 11:21 1K.dat
+-rw-r--r-- 1 lauramekaj lauramekaj        0 mai 21 13:33 1K.out
+-rw-r--r-- 1 lauramekaj lauramekaj        0 mai 21 13:33 1Kout.dat
+-rw-r--r-- 1 lauramekaj lauramekaj  1048576 mai 21 11:26 1M.dat
+-rw-r--r-- 1 lauramekaj lauramekaj        0 mai 21 13:28 filename.out
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ nc 127.0.0.1 1234 
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ ls -l
+total 10796
+-rw-r--r-- 1 lauramekaj lauramekaj 10000000 mai 21 11:49 10M.dat
+-rw-r--r-- 1 lauramekaj lauramekaj     1024 mai 21 11:21 1K.dat
+-rw-r--r-- 1 lauramekaj lauramekaj        0 mai 21 13:33 1K.out
+-rw-r--r-- 1 lauramekaj lauramekaj        0 mai 21 13:33 1Kout.dat
+-rw-r--r-- 1 lauramekaj lauramekaj  1048576 mai 21 11:26 1M.dat
+-rw-r--r-- 1 lauramekaj lauramekaj        0 mai 21 13:28 filename.out
+lauramekaj@lauramekaj-ThinkPad-T440:~/Week16$ cd ..
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls -l
+total 1108
+-rw-r--r-- 1 lauramekaj lauramekaj    1024 mai 21 13:10 1Kout.dat
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 15:19 Desktop
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 25 23:47 Documents
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai 17 14:53 Downloads
+-rw-r--r-- 1 lauramekaj lauramekaj    8980 apr 24 02:47 examples.desktop
+-rw-r--r-- 1 lauramekaj lauramekaj 1048576 mai 21 11:20 file.txt
+-rw-r--r-- 1 lauramekaj lauramekaj      93 mai  7 12:03 index.html
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 27 00:13 Junk
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Music
+-rw-r--r-- 1 lauramekaj lauramekaj      11 mai  8 01:08 octave-workspace
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 13:58 Pictures
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Public
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai  7 12:38 snap
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Templates
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:43 test
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:44 test1
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 21:18 T.Software
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Videos
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 13:11 week14
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai 21 13:29 Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 127.0.0.1 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 127.0.0.1 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 192.168.88.36 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 192.168.88.36 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 192.168.88.36 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 192.168.88.36 1234
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 192.168.88.36 1234 > a.dat
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls -l
+total 1108
+-rw-r--r-- 1 lauramekaj lauramekaj    1024 mai 21 13:10 1Kout.dat
+-rw-r--r-- 1 lauramekaj lauramekaj       0 mai 21 13:54 a.dat
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 15:19 Desktop
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 25 23:47 Documents
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai 17 14:53 Downloads
+-rw-r--r-- 1 lauramekaj lauramekaj    8980 apr 24 02:47 examples.desktop
+-rw-r--r-- 1 lauramekaj lauramekaj 1048576 mai 21 11:20 file.txt
+-rw-r--r-- 1 lauramekaj lauramekaj      93 mai  7 12:03 index.html
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 27 00:13 Junk
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Music
+-rw-r--r-- 1 lauramekaj lauramekaj      11 mai  8 01:08 octave-workspace
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai  7 13:58 Pictures
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Public
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 mai  7 12:38 snap
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Templates
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:43 test
+-rw-r--r-- 1 lauramekaj lauramekaj       6 apr 26 00:44 test1
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 21:18 T.Software
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 apr 24 05:53 Videos
+drwxr-xr-x 3 lauramekaj lauramekaj    4096 apr 30 13:11 week14
+drwxr-xr-x 2 lauramekaj lauramekaj    4096 mai 21 13:29 Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 192.168.88.38 1234 > a.dat
+^C
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ls -l
+total 11108
+-rw-r--r-- 1 lauramekaj lauramekaj     1024 mai 21 13:10 1Kout.dat
+-rw-r--r-- 1 lauramekaj lauramekaj 10240000 mai 21 14:01 a.dat
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 mai  7 15:19 Desktop
+drwxr-xr-x 3 lauramekaj lauramekaj     4096 apr 25 23:47 Documents
+drwxr-xr-x 3 lauramekaj lauramekaj     4096 mai 17 14:53 Downloads
+-rw-r--r-- 1 lauramekaj lauramekaj     8980 apr 24 02:47 examples.desktop
+-rw-r--r-- 1 lauramekaj lauramekaj  1048576 mai 21 11:20 file.txt
+-rw-r--r-- 1 lauramekaj lauramekaj       93 mai  7 12:03 index.html
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 apr 27 00:13 Junk
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 apr 24 05:53 Music
+-rw-r--r-- 1 lauramekaj lauramekaj       11 mai  8 01:08 octave-workspace
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 mai  7 13:58 Pictures
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 apr 24 05:53 Public
+drwxr-xr-x 3 lauramekaj lauramekaj     4096 mai  7 12:38 snap
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 apr 24 05:53 Templates
+-rw-r--r-- 1 lauramekaj lauramekaj        6 apr 26 00:43 test
+-rw-r--r-- 1 lauramekaj lauramekaj        6 apr 26 00:44 test1
+drwxr-xr-x 3 lauramekaj lauramekaj     4096 apr 30 21:18 T.Software
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 apr 24 05:53 Videos
+drwxr-xr-x 3 lauramekaj lauramekaj     4096 apr 30 13:11 week14
+drwxr-xr-x 2 lauramekaj lauramekaj     4096 mai 21 13:29 Week16
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc 
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+	  [-m minttl] [-O length] [-P proxy_username] [-p source_port]
+	  [-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+	  [-X proxy_protocol] [-x proxy_address[:port]] 	  [destination] [port]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc -v
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+	  [-m minttl] [-O length] [-P proxy_username] [-p source_port]
+	  [-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+	  [-X proxy_protocol] [-x proxy_address[:port]] 	  [destination] [port]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc --v
+nc: invalid option -- '-'
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+	  [-m minttl] [-O length] [-P proxy_username] [-p source_port]
+	  [-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+	  [-X proxy_protocol] [-x proxy_address[:port]] 	  [destination] [port]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc -V
+nc: option requires an argument -- 'V'
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+	  [-m minttl] [-O length] [-P proxy_username] [-p source_port]
+	  [-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+	  [-X proxy_protocol] [-x proxy_address[:port]] 	  [destination] [port]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc --V
+nc: invalid option -- '-'
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+	  [-m minttl] [-O length] [-P proxy_username] [-p source_port]
+	  [-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+	  [-X proxy_protocol] [-x proxy_address[:port]] 	  [destination] [port]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ nc -h
+OpenBSD netcat (Debian patchlevel 1.195-2)
+usage: nc [-46CDdFhklNnrStUuvZz] [-I length] [-i interval] [-M ttl]
+	  [-m minttl] [-O length] [-P proxy_username] [-p source_port]
+	  [-q seconds] [-s source] [-T keyword] [-V rtable] [-W recvlimit] [-w timeout]
+	  [-X proxy_protocol] [-x proxy_address[:port]] 	  [destination] [port]
+	Command Summary:
+		-4		Use IPv4
+		-6		Use IPv6
+		-b		Allow broadcast
+		-C		Send CRLF as line-ending
+		-D		Enable the debug socket option
+		-d		Detach from stdin
+		-F		Pass socket fd
+		-h		This help text
+		-I length	TCP receive buffer length
+		-i interval	Delay interval for lines sent, ports scanned
+		-k		Keep inbound sockets open for multiple connects
+		-l		Listen mode, for inbound connects
+		-M ttl		Outgoing TTL / Hop Limit
+		-m minttl	Minimum incoming TTL / Hop Limit
+		-N		Shutdown the network socket after EOF on stdin
+		-n		Suppress name/port resolutions
+		-O length	TCP send buffer length
+		-P proxyuser	Username for proxy authentication
+		-p port		Specify local port for remote connects
+		-q secs		quit after EOF on stdin and delay of secs
+		-r		Randomize remote ports
+		-S		Enable the TCP MD5 signature option
+		-s source	Local source address
+		-T keyword	TOS value
+		-t		Answer TELNET negotiation
+		-U		Use UNIX domain socket
+		-u		UDP mode
+		-V rtable	Specify alternate routing table
+		-v		Verbose
+		-W recvlimit	Terminate after receiving a number of packets
+		-w timeout	Timeout for connects and final net reads
+		-X proto	Proxy protocol: "4", "5" (SOCKS) or "connect"
+		-x addr[:port]	Specify proxy address and port
+		-Z		DCCP mode
+		-z		Zero-I/O mode [used for scanning]
+	Port numbers can be individual or ranges: lo-hi [inclusive]
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ssh user@ 192.168.88.36
+ssh: Could not resolve hostname : Name or service not known
+lauramekaj@lauramekaj-ThinkPad-T440:~$ ssh user@192.168.88.36
+user@192.168.88.36's password: 
+Linux a12-203 4.9.0-8-amd64 #1 SMP Debian 4.9.110-3+deb9u6 (2018-10-08) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Tue May 21 06:56:57 2019 from 192.168.88.39
+user@a12-203:~$ nc 192.168.88.38 1234
+(UNKNOWN) [192.168.88.38] 1234 (?) : Connection refused
+user@a12-203:~$ nc 192.168.88.38 1234
+user@a12-203:~$ time nc 192.168.88.38 1234
+
+real	0m1.095s
+user	0m0.000s
+sys	0m0.128s
+user@a12-203:~$ nc -v 192.168.88.38 1234
+192.168.88.38: inverse host lookup failed: Unknown host
+(UNKNOWN) [192.168.88.38] 1234 (?) open
+user@a12-203:~$ Connection to 192.168.88.36 closed by remote host.
+Connection to 192.168.88.36 closed.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
